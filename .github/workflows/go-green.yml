@@ -13,12 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Trust Me
-        # run: |
-        #   git config --global --add safe.directory /__w/go-green/go-green
         run: |
-          apt-get update
-          apt-get install -y git
-          export GIT_CEILING_DIRECTORIES=/__w # don't work
+          git config --global --add safe.directory '/Users/yaelahlan/Documents/go-green'
 
       - uses: actions/checkout@v3
         with:
