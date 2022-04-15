@@ -2,9 +2,10 @@ name: Auto commit
 
 on:
   push:
-    branches:
-      - master
-    workflow_dispatch:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
   
   schedule:
     - cron: "0 7,8,9,10,11 * * *"
@@ -24,9 +25,9 @@ jobs:
           export GIT_CEILING_DIRECTORIES=/__w # don't work
 
       - uses: actions/checkout@v3
-        with:
-          persist-credentials: false
-          fetch-depth: 0
+        # with:
+        #   persist-credentials: false
+        #   fetch-depth: 0
         
       - name: Modify last update
         run: |
@@ -50,11 +51,9 @@ jobs:
 
           rand=$[$RANDOM % ${#arr[@]}]
           git commit -m "${arr[$rand]}"
-     - name: GH Release
-        uses: softprops/action-gh-release@v0.1.14
+      - name: GitHub Push
+        uses: ad-m/github-push-action@v0.5.0
         with:
-          body: test?
-          tag_name: v0.0.1
-          files: README.md
-          generate_release_notes: true
-          token: ${{ secrets.GITHUB_TOKEN }}
+          force: true
+          directory: "*"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
