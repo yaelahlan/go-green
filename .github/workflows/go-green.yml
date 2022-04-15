@@ -2,32 +2,20 @@ name: Auto commit
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-  workflow_dispatch:
-  
+    branches:
+      - master
+
   schedule:
     - cron: "0 7,8,9,10,11 * * *"
 
 jobs:
   auto_commit:
     runs-on: ubuntu-latest
-    container: "ubuntu:devel"
-
     steps:
-
-      - name: Trust My Directory
-        # run: git config --global --add safe.directory /__w/go-green/go-green
-        run: |
-          apt-get update
-          apt-get install -y git
-          export GIT_CEILING_DIRECTORIES=/__w # don't work
-
-      - uses: actions/checkout@v3
-        # with:
-        #   persist-credentials: false
-        #   fetch-depth: 0
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+          fetch-depth: 0
         
       - name: Modify last update
         run: |
@@ -55,5 +43,5 @@ jobs:
         uses: ad-m/github-push-action@v0.5.0
         with:
           force: true
-          directory: "*"
+          directory: "."
           github_token: ${{ secrets.GITHUB_TOKEN }}
