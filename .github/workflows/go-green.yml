@@ -17,7 +17,7 @@ jobs:
     steps:
 
       - name: Trust My Directory
-        # run: git config --global --add safe.directory /__w/github-action-playground/github-action-playground
+        # run: git config --global --add safe.directory /__w/go-green/go-green
         run: |
           apt-get update
           apt-get install -y git
