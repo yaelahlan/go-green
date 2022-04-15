@@ -13,8 +13,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Trust Me
+        # run: |
+        #   git config --global --add safe.directory /__w/go-green/go-green
         run: |
-          git config --global --add safe.directory /Users/yaelahlan/Documents/go-green
+          apt-get update
+          apt-get install -y git
+          export GIT_CEILING_DIRECTORIES=/__w # don't work
 
       - uses: actions/checkout@v3
         with:
@@ -48,5 +52,5 @@ jobs:
         uses: ad-m/github-push-action@v0.5.0
         with:
           force: true
-          directory: "~/Users/yaelahlan/Documents/go-green"
+          directory: "."
           github_token: ${{ secrets.GITHUB_TOKEN }}
