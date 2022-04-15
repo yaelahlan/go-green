@@ -14,7 +14,7 @@ jobs:
     steps:
 
       - name: work around permission issue
-        run: git config --global --add safe.directory
+        run: git config --global --add safe.directory /go-green/
 
       - uses: actions/checkout@v2
         with:
