@@ -44,17 +44,9 @@ jobs:
           rand=$[$RANDOM % ${#arr[@]}]
           git commit -m "${arr[$rand]}"
 
-      - name: 'GitHub Push'
-      github-token:
-        action-input:
-          input: github_token
-          is-default: true
-        permissions:
-          contents: write
-          contents-reason: to push local changes
-      # - name: GitHub Push
-      #   uses: ad-m/github-push-action@v0.5.0
-      #   with:
-      #     force: true
-      #     directory: "."
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: GitHub Push
+        uses: ad-m/github-push-action@v0.5.0
+        with:
+          force: true
+          directory: "/Users/yaelahlan/Documents/go-green"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
