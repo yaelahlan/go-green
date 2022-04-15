@@ -13,10 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - name: work around permission issue
-        run: git config --global --add safe.directory /go-green/
-
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           persist-credentials: false
           fetch-depth: 0
