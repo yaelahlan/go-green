@@ -45,3 +45,6 @@ jobs:
           force: true
           directory: "."
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          
+       - name: work around permission issue
+       run: git config --global --add safe.directory /__w/
