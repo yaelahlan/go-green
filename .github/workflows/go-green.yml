@@ -16,6 +16,10 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0
+
+      - name: work around permission issue
+        run: |
+          git config --global --add safe.directory /github/workspace
         
       - name: Modify last update
         run: |
