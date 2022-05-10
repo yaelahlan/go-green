@@ -12,9 +12,6 @@ jobs:
   auto_commit:
     runs-on: ubuntu-latest
     steps:
-      # - name: Trust Me
-      #   run: |
-      #     git config --global --add safe.directory '/Users/yaelahlan/Documents/go-green'
 
       - uses: actions/checkout@v2
         with:
@@ -22,7 +19,7 @@ jobs:
           fetch-depth: 0
           
       - name: work around permission issue
-        run: git config --global --add safe.directory /__w/go-green/go-green
+        run: git config --global --add safe.directory /github/workspace
         
       - name: Modify last update
         run: |
